@@ -17,27 +17,36 @@
         //connect to the database
             $db = mysqli_connect('ec2-107-20-127-127.compute-1.amazonaws.com', 'vxyxdkxqwrbdbk', '6e538cf941fe6ce5b36d777f8dd6caa0313d8a2393a9ff2e57bdd69d4154fa5d', 'd87c8tsve4pvjd');
             //add information for the products
-            function createTables() {
-            $sqlList = ["CREATE TABLE IF NOT EXISTS product (
-                product_ID INT PRIMARY KEY,
-                product_name VARCHAR(25) NOT NULL,
-                color VARCHAR(10) NOT NULL,
-                price VARCHAR(10) NOT NULL,
-                on_hand_quantity INT NOT NULL,
-                product_page TEXT NOT NULL);",
-            "CREATE TABLE IF NOT EXISTS manager (
-                manager_ID INT PRIMARY KEY,
-                product_ID INT NOT NULL,
-                department VARCHAR(15) NOT NULL,
-                managerName VARCHAR(30) NOT NULL);",
-            "CREATE TABLE IF NOT EXISTS manufacturer (
-                manufacturer_ID INT PRIMARY KEY,
-                product_ID INT NOT NULL,
-                manufacturer VARCHAR(20) NOT NULL,
-                website TEXT NOT NULL);"];
-            }
-            foreach($sqlList as $sql) {
-                $this->pdo->exec($sql);
+            class postgresSQLCreateTable {
+                private $pdo;
+
+                public function __construct($pdo) {
+                    $this->pdo = $pdo;
+                }
+                public function createTables() {
+                    $sqlList = ["CREATE TABLE IF NOT EXISTS product (
+                        product_ID INT PRIMARY KEY,
+                        product_name VARCHAR(25) NOT NULL,
+                        color VARCHAR(10) NOT NULL,
+                        price VARCHAR(10) NOT NULL,
+                        on_hand_quantity INT NOT NULL,
+                        product_page TEXT NOT NULL);",
+                    "CREATE TABLE IF NOT EXISTS manager (
+                        manager_ID INT PRIMARY KEY,
+                        product_ID INT NOT NULL,
+                        department VARCHAR(15) NOT NULL,
+                        managerName VARCHAR(30) NOT NULL);",
+                    "CREATE TABLE IF NOT EXISTS manufacturer (
+                        manufacturer_ID INT PRIMARY KEY,
+                        product_ID INT NOT NULL,
+                        manufacturer VARCHAR(20) NOT NULL,
+                        website TEXT NOT NULL);"];
+                    
+                    foreach($sqlList as $sql) {
+                        $this->pdo->exec($sql);
+                    }
+                    return $this;
+                }
             }
             
             $dbP = "INSERT INTO product ( product_ID, product_name, color, price, on_hand_quantity, product_page) VALUES 
