@@ -15,7 +15,7 @@
     <body>
         <?php 
         //connect to the database
-            $db = mysqli_connect('localhost', 'root', 'mysql', 'pfjdbf');
+            $db = mysqli_connect('ec2-107-20-127-127.compute-1.amazonaws.com', 'vxyxdkxqwrbdbk', '6e538cf941fe6ce5b36d777f8dd6caa0313d8a2393a9ff2e57bdd69d4154fa5d', 'd87c8tsve4pvjd');
             //add information for the products
             $dbP = "INSERT INTO product ( product_ID, product_name, color, price, on_hand_quantity, product_page) VALUES 
                 ('1', 'Bath Towel', 'Black', '$5.75', '75', 'http://MyStore.com/bathtowel.php'),
