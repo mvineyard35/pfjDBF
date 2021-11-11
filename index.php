@@ -15,6 +15,7 @@
     <body>
         <?php 
         //connect to the database
+            require 'vendor/autoload.php';
             $db = mysqli_connect('ec2-34-224-239-147.compute-1.amazonaws.com', 'bzfjyvhtwlsdpj', '9da1c0d6c745d9b69785b60408678690ccaeac71e2322ecc346d96e902d79b0c', 'd7uufd6rh6c8kl');
             //add information for the products
             class postgresSQLCreateTable {
