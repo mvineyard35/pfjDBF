@@ -17,6 +17,28 @@
         //connect to the database
             $db = mysqli_connect('ec2-107-20-127-127.compute-1.amazonaws.com', 'vxyxdkxqwrbdbk', '6e538cf941fe6ce5b36d777f8dd6caa0313d8a2393a9ff2e57bdd69d4154fa5d', 'd87c8tsve4pvjd');
             //add information for the products
+
+            $sqlp = "CREATE TABLE product (
+                product_ID INT PRIMARY KEY,
+                product_name VARCHAR(25) NOT NULL,
+                color VARCHAR(10) NOT NULL,
+                price VARCHAR(10) NOT NULL,
+                on_hand_quantity INT NOT NULL,
+                product_page TEXT NOT NULL)";
+            $sqlMan = "CREATE TABLE manager (
+                manager_ID INT PRIMARY KEY,
+                product_ID INT NOT NULL,
+                department VARCHAR(15) NOT NULL,
+                managerName VARCHAR(30) NOT NULL)";
+            $sqlM = "CREATE TABLE manufacturer (
+                manufacturer_ID INT PRIMARY KEY,
+                product_ID INT NOT NULL,
+                manufacturer VARCHAR(20) NOT NULL,
+                website TEXT NOT NULL)";
+            $db->query($sqlp);
+            $db->query($sqlMan);
+            $db->query($sqlM);
+            
             $dbP = "INSERT INTO product ( product_ID, product_name, color, price, on_hand_quantity, product_page) VALUES 
                 ('1', 'Bath Towel', 'Black', '$5.75', '75', 'http://MyStore.com/bathtowel.php'),
                 ('2', 'Wash Cloth', 'White', '$0.99', '225', 'http://MyStore.com/washcloth.php'),
