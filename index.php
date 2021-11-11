@@ -15,7 +15,7 @@
     <body>
         <?php 
         //connect to the database
-            $db = mysqli_connect('ec2-107-20-127-127.compute-1.amazonaws.com', 'vxyxdkxqwrbdbk', '6e538cf941fe6ce5b36d777f8dd6caa0313d8a2393a9ff2e57bdd69d4154fa5d', 'd87c8tsve4pvjd');
+            $db = mysqli_connect('ec2-34-224-239-147.compute-1.amazonaws.com', 'bzfjyvhtwlsdpj', '9da1c0d6c745d9b69785b60408678690ccaeac71e2322ecc346d96e902d79b0c', 'd7uufd6rh6c8kl');
             //add information for the products
             class postgresSQLCreateTable {
                 private $pdo;
