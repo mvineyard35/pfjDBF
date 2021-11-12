@@ -15,40 +15,33 @@
     <body>
         <?php 
         //connect to the database
-            require 'vendor/autoload.php';
-            $db = mysqli_connect('ec2-34-224-239-147.compute-1.amazonaws.com', 'bzfjyvhtwlsdpj', '9da1c0d6c745d9b69785b60408678690ccaeac71e2322ecc346d96e902d79b0c', 'd7uufd6rh6c8kl');
+            $db = mysqli_connect('remotemysql.com', '2s5LM4NnrP', 'ipHpWhushd', '2s5LM4NnrP');
             //add information for the products
-            class postgresSQLCreateTable {
-                private $pdo;
-
-                public function __construct($pdo) {
-                    $this->pdo = $pdo;
-                }
-                public function createTables() {
-                    $sqlList = ["CREATE TABLE IF NOT EXISTS product (
-                        product_ID INT PRIMARY KEY,
-                        product_name VARCHAR(25) NOT NULL,
-                        color VARCHAR(10) NOT NULL,
-                        price VARCHAR(10) NOT NULL,
-                        on_hand_quantity INT NOT NULL,
-                        product_page TEXT NOT NULL);",
-                    "CREATE TABLE IF NOT EXISTS manager (
-                        manager_ID INT PRIMARY KEY,
-                        product_ID INT NOT NULL,
-                        department VARCHAR(15) NOT NULL,
-                        managerName VARCHAR(30) NOT NULL);",
-                    "CREATE TABLE IF NOT EXISTS manufacturer (
-                        manufacturer_ID INT PRIMARY KEY,
-                        product_ID INT NOT NULL,
-                        manufacturer VARCHAR(20) NOT NULL,
-                        website TEXT NOT NULL);"];
-                    
-                    foreach($sqlList as $sql) {
-                        $this->pdo->exec($sql);
-                    }
-                    return $this;
-                }
-            }
+            
+                $createProduct = "CREATE TABLE IF NOT EXISTS product (
+                    product_ID INT PRIMARY KEY,
+                    product_name VARCHAR(25) NOT NULL,
+                    color VARCHAR(10) NOT NULL,
+                    price VARCHAR(10) NOT NULL,
+                    on_hand_quantity INT NOT NULL,
+                    product_page TEXT NOT NULL);";
+                $createManager = "CREATE TABLE IF NOT EXISTS manager (
+                    manager_ID INT PRIMARY KEY,
+                    product_ID INT NOT NULL,
+                    department VARCHAR(15) NOT NULL,
+                    managerName VARCHAR(30) NOT NULL);";
+                $createManu = "CREATE TABLE IF NOT EXISTS manufacturer (
+                    manufacturer_ID INT PRIMARY KEY,
+                    product_ID INT NOT NULL,
+                    manufacturer VARCHAR(20) NOT NULL,
+                    website TEXT NOT NULL);";
+                $db->query($createProduct);
+                $db->query($createManager);
+                $db->query($createManu);
+                
+                
+            
+            
             
             $dbP = "INSERT INTO product ( product_ID, product_name, color, price, on_hand_quantity, product_page) VALUES 
                 ('1', 'Bath Towel', 'Black', '$5.75', '75', 'http://MyStore.com/bathtowel.php'),
